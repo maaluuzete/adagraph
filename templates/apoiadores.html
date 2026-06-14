@@ -14,7 +14,9 @@
 </head>
 <body>
 <nav class="navbar">
-  <a href="/" class="nav-logo">Ada<span>Graph</span></a>
+  <a href="#" class="nav-logo">
+    <img src="{{ url_for('static', filename='img/logo.jpeg') }}" alt="AdaGraph" class="logo-img">
+    </a>
   <button class="nav-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
   <ul class="nav-links" id="navLinks">
     <li><a href="/#sobre">Sobre</a></li>
