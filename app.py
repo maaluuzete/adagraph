@@ -123,6 +123,13 @@ APOIADORES = [
     "Fernanda da Silva",
     "Jessica Seabra",
     "Belissa Schonardie",
+    "Maria Araujo",
+    "Cristiane Rocha",
+    "Wander Gonçalves",
+    "Lidiane Rocha",
+    "Denaide Bastos Silva",
+    "Tamires Ribeiro",
+    "Mariana Lopes",  
 ]
 @app.route("/")
 def index():
