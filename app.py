@@ -1,8 +1,18 @@
-from flask import Flask, render_template
+import os
+import random
+from flask import Flask, render_template, request, jsonify
+from supabase import create_client, Client
 
-app=Flask(__name__)
+app = Flask(__name__)
 
-TEAM=[
+SUPABASE_URL = os.environ.get("SUPABASE_URL")
+SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
+
+supabase: Client = None
+if SUPABASE_URL and SUPABASE_KEY:
+    supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+TEAM = [
     {
         "name": "Malu Azevedo",
         "role": "Campo Grande, MS • 2º ano • IFMS",
@@ -52,6 +62,7 @@ TEAM=[
         ),
     },
 ]
+
 PARTNERS = [
     {"name": "Instituto Alpha Lumen", "logo": "static/img/alpha_lumen.jpeg"},
     {"name": "Instituto Apontar",     "logo": "static/img/apontar.jpeg"},
@@ -68,69 +79,25 @@ ODS = [
 ]
 
 APOIADORES = [
-    "Agata Yoon",
-    "Mariana Botelho",
-    "Aghata Vitória",
-    "José Gabriel Alves",
-    "Daysa de Campos",
-    "Andressa Sabrina Santos",
-    "Ana Yoon",
-    "Rodrigo Berino",
-    "Davi Hudson",
-    "Carlos Eduardo Avellar",
-    "Alessandra Teixeira",
-    "Sthefany Souza",
-    "Leonardo Barbosa",
-    "Jessica Seabra",
-    "Luis Eurico",
-    "Beatriz Naitzki",
-    "Marina Maia",
-    "Tathiana de Oliveira",
-    "Helder Nelson",
-    "Eliana Vieira",
-    "Marcia Aparecida",
-    "Roger Sauandaj",
-    "Karine Antunes",
-    "Marcileia Silva",
-    "Anannda Rios",
-    "Ana Laura Kogeyama",
-    "Richard Sousa",
-    "Erik Seiji",
-    "Patrizia Palmieri",
-    "Flora Cardoso",
-    "Ana Carolina Camargo",
-    "Vanda Lucia da Costa",
-    "Priscila da Silva",
-    "Camila da Silva",
-    "Enio da Rosa",
-    "Elissa Yan",
-    "Thiago Borges",
-    "Fabio Henrique Andrade",
-    "Lucas de Souza",
-    "Arthur Wust",
-    "Luana de Cunha",
-    "Eduardo Seiiti",
-    "Vitória Cruz",
-    "Ravi Petry",
-    "Pedro Henrique Peneira",
-    "João Gabriel Kupske",
-    "Rossana Gonçalves",
-    "Paulo Henrique Kettner",
-    "Ricardo Felipe de Souza",
-    "Tamires Barbosa",
-    "Mariana Rodrigues",
-    "Aparecida Vines",
-    "Fernanda da Silva",
-    "Jessica Seabra",
-    "Belissa Schonardie",
-    "Maria Araujo",
-    "Cristiane Rocha",
-    "Wander Gonçalves",
-    "Lidiane Rocha",
-    "Denaide Bastos Silva",
-    "Tamires Ribeiro",
-    "Mariana Lopes",  
+    "Agata Yoon", "Mariana Botelho", "Aghata Vitória", "José Gabriel Alves",
+    "Daysa de Campos", "Andressa Sabrina Santos", "Ana Yoon", "Rodrigo Berino",
+    "Davi Hudson", "Carlos Eduardo Avellar", "Alessandra Teixeira", "Sthefany Souza",
+    "Leonardo Barbosa", "Jessica Seabra", "Luis Eurico", "Beatriz Naitzki",
+    "Marina Maia", "Tathiana de Oliveira", "Helder Nelson", "Eliana Vieira",
+    "Marcia Aparecida", "Roger Sauandaj", "Karine Antunes", "Marcileia Silva",
+    "Anannda Rios", "Ana Laura Kogeyama", "Richard Sousa", "Erik Seiji",
+    "Patrizia Palmieri", "Flora Cardoso", "Ana Carolina Camargo", "Vanda Lucia da Costa",
+    "Priscila da Silva", "Camila da Silva", "Enio da Rosa", "Elissa Yan",
+    "Thiago Borges", "Fabio Henrique Andrade", "Lucas de Souza", "Arthur Wust",
+    "Luana de Cunha", "Eduardo Seiiti", "Vitória Cruz", "Ravi Petry",
+    "Pedro Henrique Peneira", "João Gabriel Kupske", "Rossana Gonçalves",
+    "Paulo Henrique Kettner", "Ricardo Felipe de Souza", "Tamires Barbosa",
+    "Mariana Rodrigues", "Aparecida Vines", "Fernanda da Silva", "Jessica Seabra",
+    "Belissa Schonardie", "Maria Araujo", "Cristiane Rocha", "Wander Gonçalves",
+    "Lidiane Rocha", "Denaide Bastos Silva", "Tamires Ribeiro", "Mariana Lopes"
 ]
+
+
 @app.route("/")
 def index():
     return render_template(
@@ -141,8 +108,9 @@ def index():
         youtube_url="https://www.youtube.com/embed/kM5vy7zZS6o",
         figma_url="https://www.figma.com/proto/Q42BqkIOGwgkxi42tdPbm6/AdaGraph?node-id=547-379&p=f&t=zvz2JQ0dejHW3wkq-1&scaling=scale-down&content-scaling=fixed&page-id=62%3A25",
         instagram_url="https://instagram.com/ctrldivas",
-        app_download_url="#", 
+        app_download_url="#",
     )
+
 @app.route("/apoiadores")
 def apoiadores():
     return render_template("apoiadores.html", apoiadores=APOIADORES)
@@ -150,6 +118,83 @@ def apoiadores():
 @app.route('/ecossistema')
 def ecossistema():
     return render_template('ecossistema.html')
+
+
+
+@app.route('/api/graph', methods=['GET'])
+def get_graph():
+    """Busca todos os nós e conexões salvos no Supabase."""
+    if not supabase:
+        return jsonify({"error": "Supabase não configurado"}), 500
+
+    nodes_res = supabase.table('nodes').select('*').execute()
+    edges_res = supabase.table('edges').select('*').execute()
+
+    formatted_edges = [
+        {"id": edge["id"], "from": edge["from_node"], "to": edge["to_node"]}
+        for edge in edges_res.data
+    ]
+
+    return jsonify({
+        "nodes": nodes_res.data,
+        "edges": formatted_edges
+    })
+
+@app.route('/api/graph/node', methods=['POST'])
+def add_node():
+    """Cria um novo nó e suas conexões no Supabase."""
+    if not supabase:
+        return jsonify({"error": "Supabase não configurado"}), 500
+
+    data = request.json or {}
+    name = data.get('name', 'Anônimo')
+    color = data.get('color', '#E06699')
+    emoji = data.get('emoji', '💡')
+    msg = data.get('msg', '')
+    margin = data.get('margin', 20)
+
+    node_resp = supabase.table('nodes').insert({
+        "label": name,
+        "color": color,
+        "emoji": emoji,
+        "msg": msg,
+        "margin": margin
+    }).execute()
+
+    new_node = node_resp.data[0]
+    new_id = new_node['id']
+
+    all_nodes_res = supabase.table('nodes').select('id').execute()
+    existing_ids = [n['id'] for n in all_nodes_res.data if n['id'] != new_id]
+
+    new_edges = []
+    if existing_ids:
+        target_1 = random.choice(existing_ids)
+        e1 = supabase.table('edges').insert({"from_node": new_id, "to_node": target_1}).execute()
+        new_edges.append({"id": e1.data[0]["id"], "from": new_id, "to": target_1})
+
+        if random.random() < 0.3 and len(existing_ids) > 1:
+            other_ids = [i for i in existing_ids if i != target_1]
+            target_2 = random.choice(other_ids)
+            e2 = supabase.table('edges').insert({"from_node": new_id, "to_node": target_2}).execute()
+            new_edges.append({"id": e2.data[0]["id"], "from": new_id, "to": target_2})
+
+    return jsonify({
+        "node": new_node,
+        "edges": new_edges
+    })
+
+@app.route('/api/graph/node/<int:node_id>', methods=['DELETE'])
+def delete_node(node_id):
+    """Deleta um nó do Supabase pelo ID."""
+    if not supabase:
+        return jsonify({"error": "Supabase não configurado"}), 500
+
+    if node_id == 1:
+        return jsonify({"error": "Não é possível excluir o nó principal"}), 400
+
+    supabase.table('nodes').delete().eq('id', node_id).execute()
+    return jsonify({"success": True})
 
 if __name__ == "__main__":
     app.run(debug=True)
