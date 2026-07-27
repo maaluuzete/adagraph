@@ -147,5 +147,9 @@ def index():
 def apoiadores():
     return render_template("apoiadores.html", apoiadores=APOIADORES)
 
+@app.route('/ecossistema')
+def ecossistema():
+    return render_template('ecossistema.html')
+
 if __name__ == "__main__":
     app.run(debug=True)

@@ -870,3 +870,251 @@ a  { text-decoration: none; color: inherit; }
     height: 280px;
   }
 }
+/* alterações referentes ao ecossistema */
+.ap-hero.eco-hero {
+  min-height: unset;
+  padding: 96px 24px 32px;
+}
+.ap-hero.eco-hero .ap-hero-title {
+  font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+  margin: 10px 0 8px;
+}
+.ap-hero.eco-hero .ap-hero-sub {
+  font-size: 0.92rem;
+  max-width: 480px;
+}
+ 
+.eco-counter {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.18);
+  padding: 8px 20px;
+  border-radius: 999px;
+  transition: background var(--transition);
+}
+ 
+/* --- Seção do grafo --- */
+#eco-network-section {
+  padding-top: 32px;
+  padding-bottom: 0;
+  position: relative;
+}
+ 
+#network {
+  width: 100%;
+  height: calc(100vh - 210px);
+  min-height: 520px;
+  background: var(--pink-bg);
+  border-radius: var(--radius);
+}
+ 
+/* --- Botão flutuante de adicionar --- */
+#addBtn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 60px;
+  height: 60px;
+  background: var(--pink-mid);
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 32px;
+  line-height: 1;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(216, 27, 106, 0.4);
+  transition: transform var(--transition), box-shadow var(--transition);
+  z-index: 50;
+}
+#addBtn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 10px 32px rgba(216, 27, 106, 0.55);
+}
+ 
+/* --- Modal: entrar no ecossistema --- */
+#modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.94);
+  background: var(--crimson);
+  color: var(--white);
+  padding: 36px;
+  border-radius: var(--radius);
+  width: min(420px, 90vw);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition), transform var(--transition);
+  box-sizing: border-box;
+  z-index: 200;
+}
+#modal.active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: all;
+}
+#modal h3 {
+  font-family: var(--font);
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 18px;
+  text-align: center;
+}
+ 
+.eco-label-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+ 
+.eco-options {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+ 
+.eco-color-btn,
+.eco-emoji-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  background: rgba(255, 255, 255, 0.15);
+  transition: transform var(--transition), background var(--transition), border-color var(--transition);
+}
+.eco-color-btn.selected,
+.eco-emoji-btn.selected {
+  border-color: var(--white);
+  transform: scale(1.15);
+  background: rgba(255, 255, 255, 0.3);
+}
+.eco-color-green { background: #3bb273; }
+.eco-color-pink  { background: var(--pink-light); }
+ 
+#modal input {
+  width: 100%;
+  margin-top: 6px;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  font-family: var(--font);
+  font-size: 0.92rem;
+}
+#msgInput { margin-top: 14px; font-size: 0.85rem; }
+ 
+#submitBtn {
+  margin-top: 24px;
+  width: 100%;
+  padding: 13px;
+  background: var(--pink-bg);
+  color: var(--crimson);
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 0.92rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+#submitBtn:hover {
+  background: var(--white);
+  transform: translateY(-1px);
+}
+ 
+/* --- Cartão flutuante ao clicar num nó --- */
+#nodeModal {
+  position: fixed;
+  transform: translate(-50%, -100%) scale(0.94);
+  background: var(--crimson);
+  color: var(--white);
+  padding: 22px 26px;
+  border-radius: var(--radius);
+  width: 250px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition), transform var(--transition);
+  box-sizing: border-box;
+  text-align: center;
+  z-index: 100;
+}
+#nodeModal.active {
+  opacity: 1;
+  transform: translate(-50%, -100%) scale(1);
+  pointer-events: all;
+}
+ 
+#nodeEmojiDisplay { font-size: 44px; margin: 6px 0; }
+#nodeName {
+  margin: 6px 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+#nodeMessage {
+  font-size: 0.82rem;
+  opacity: 0.9;
+  font-style: italic;
+  margin-top: 10px;
+}
+ 
+#closeNodeBtn {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  color: var(--white);
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity var(--transition), transform var(--transition);
+  padding: 0;
+}
+#closeNodeBtn:hover { opacity: 1; transform: scale(1.15); }
+ 
+#deleteBtn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: none;
+  color: var(--white);
+  border: none;
+  font-size: 17px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity var(--transition), transform var(--transition);
+  padding: 0;
+}
+#deleteBtn:hover { opacity: 1; transform: scale(1.1); }
+ 
+/* --- Canvas de brilho compartilhado (o mesmo do botão "Baixar App" no main.js) ---
+   Nas outras páginas ele já nasce dentro da .hero; aqui garantimos que cubra
+   a tela toda, já que essa página não tem uma .hero. */
+#sparkCanvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+}
+ 
+@media (max-width: 700px) {
+  #network { height: calc(100vh - 240px); }
+  #addBtn { bottom: 24px; right: 24px; }
+  #modal { padding: 26px; }
+}
