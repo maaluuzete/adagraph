@@ -108,7 +108,7 @@ def index():
         youtube_url="https://www.youtube.com/embed/kM5vy7zZS6o",
         figma_url="https://www.figma.com/proto/Q42BqkIOGwgkxi42tdPbm6/AdaGraph?node-id=547-379&p=f&t=zvz2JQ0dejHW3wkq-1&scaling=scale-down&content-scaling=fixed&page-id=62%3A25",
         instagram_url="https://instagram.com/ctrldivas",
-        app_download_url="#",
+        url_votacao="https://votacao.alphalumen.org.br/poll/vote-obt-2026",
     )
 
 @app.route("/apoiadores")

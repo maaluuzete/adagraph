@@ -1,292 +1,300 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdaGraph - Garotas Mapeando o Futuro</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap"
+    rel="stylesheet" />
 
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 </head>
+
 <body>
 
-<nav class="navbar">
+  <nav class="navbar">
     <a href="#" class="nav-logo">
-    <img src="{{ url_for('static', filename='img/logo.jpeg') }}" alt="AdaGraph" class="logo-img">
+      <img src="{{ url_for('static', filename='img/logo.jpeg') }}" alt="AdaGraph" class="logo-img">
     </a>
-  <button class="nav-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#sobre">Sobre</a></li>
-    <li><a href="#pitch">Pitch</a></li>
-    <li><a href="#galeria-equipe">Equipe</a></li>
-    <li><a href="#solucao">Solução</a></li>
-    <li><a href="#parceiros">Parceiros</a></li>
-    <li><a href="/ecossistema">Ecossistema Ada</a></li>
-    <li><a href="/apoiadores">Apoiadores</a></li>
-    <li>
-      <a href="{{ app_download_url }}" class="nav-cta" id="sparkBtn">
-        Baixar App ✨
-      </a>
-    </li>
-  </ul>
-</nav>
-<section class="hero" id="inicio">
-  <div class="hero-bg-shapes">
-    <span class="shape shape-1"></span>
-    <span class="shape shape-2"></span>
-    <span class="shape shape-3"></span>
-  </div>
+    <button class="nav-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#pitch">Pitch</a></li>
+      <li><a href="#galeria-equipe">Equipe</a></li>
+      <li><a href="#solucao">Solução</a></li>
+      <li><a href="#parceiros">Parceiros</a></li>
+      <li><a href="/ecossistema">Ecossistema Ada</a></li>
+      <li><a href="/apoiadores">Apoiadores</a></li>
+      <li>
+        <a href="#votecao-eat" class="nav-cta" id="sparkBtn">
+          Vote em nós ✨
+        </a>
+      </li>
+    </ul>
+  </nav>
 
-  <div class="hero-content">
-    <p class="hero-eyebrow">OBT 2026 • Equipe ctrl&lt;div&gt;as</p>
-    <h1 class="hero-title">Ada<span>Graph</span></h1>
-    <p class="hero-tagline">"Garotas mapeando o futuro!"</p>
-    <p class="hero-desc">
-      Um ecossistema onde o currículo se molda à aluna. Um Grafo de Conhecimento
-      personaliza sua trilha e uma mentora-GPS te guia para que nenhuma menina
-      desista das exatas.
-    </p>
-
-    <div class="hero-actions">
-      <a href="{{ app_download_url }}" class="btn-primary spark-trigger" id="downloadBtn">
-        Baixar Aplicativo
-      </a>
-      <a href="#sobre" class="btn-secondary">Saiba Mais</a>
+  <section class="hero" id="inicio">
+    <div class="hero-bg-shapes">
+      <span class="shape shape-1"></span>
+      <span class="shape shape-2"></span>
+      <span class="shape shape-3"></span>
     </div>
-  </div>
-  <canvas id="sparkCanvas"></canvas>
-</section>
 
-<section class="section section-light" id="sobre">
-  <div class="container">
-    <span class="section-tag">Nosso Projeto OBT 2026</span>
-    <h2 class="section-title">O que é o <span>AdaGraph</span>?</h2>
-    <p class="section-intro">
-      AdaGraph é um aplicativo desenvolvido para ajudar meninas no aprendizado,
-      oferecendo um espaço acessível para tirar dúvidas e, ao mesmo tempo,
-      enfrentar a falta de representatividade na área. A proposta é incentivar
-      mais meninas a se desenvolverem, fortalecendo sua confiança e ampliando
-      suas oportunidades acadêmicas e profissionais.
-    </p>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🗺️</div>
-        <h3>Grafo de Aprendizado</h3>
-        <p>
-          A mentora desenha o cronograma diretamente no app, adicionando materiais
-          e marcando sessões de vídeo. O sistema bloqueia conteúdos avançados se
-          faltarem pré-requisitos, garantindo base sólida e evitando frustrações.
-        </p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🆘</div>
-        <h3>SOS Exatas</h3>
-        <p>
-          Uma menina coloca sua dúvida no app e qualquer uma pode ajudar. Quando
-          uma mentora responde, a resposta ganha o selo <em>"Verificado pela Ada"</em>,
-          garantindo segurança e rigor técnico.
-        </p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🤝</div>
-        <h3>Smart Matching</h3>
-        <p>
-          Nosso algoritmo vai além dos horários: promove representatividade.
-          Priorizamos conexões que fortalecem a identidade de meninas negras e
-          indígenas, conectando-as com mentoras que compartilham suas vivências.
-        </p>
-      </div>
-    </div>
-    <div class="ods-block">
-      <h3 class="ods-title">Alinhado aos ODS</h3>
-      <p class="ods-desc">
-        O AdaGraph está alinhado aos Objetivos de Desenvolvimento Sustentável,
-        promovendo inclusão, equidade e acesso ao conhecimento.
+    <div class="hero-content">
+      <p class="hero-eyebrow">OBT 2026 • Equipe ctrl&lt;div&gt;as</p>
+      <h1 class="hero-title">Ada<span>Graph</span></h1>
+      <p class="hero-tagline">"Garotas mapeando o futuro!"</p>
+      <p class="hero-desc">
+        Um ecossistema onde o currículo se molda à aluna. Um Grafo de Conhecimento
+        personaliza sua trilha e uma mentora-GPS te guia para que nenhuma menina
+        desista das exatas.
       </p>
-      <div class="ods-grid">
-        {% for o in ods %}
-        <div class="ods-badge" style="background:{{ o.color }}">
-          <span class="ods-num">{{ o.num }}</span>
-          <span class="ods-label">{{ o.label }}</span>
+
+      <div class="hero-actions">
+        <a href="#votecao-eat" class="btn-primary spark-trigger" id="downloadBtn">
+          Vote em nós!
+        </a>
+        <a href="#sobre" class="btn-secondary">Saiba Mais</a>
+      </div>
+    </div>
+    <canvas id="sparkCanvas"></canvas>
+  </section>
+  <section class="section section-pink text-center" id="votecao-eat">
+    <div class="container">
+      <span class="section-tag light">Semana EAT 🏆</span>
+      <h2 class="section-title light">Vote no <span>AdaGraph</span> como Melhor Projeto!</h2>
+      <p class="section-intro light">
+        Estamos participando da <strong>Semana EAT</strong> e precisamos do seu apoio para conquistar o prêmio de
+        <strong>Melhor Projeto</strong>! Cada voto faz toda a diferença para continuarmos impulsionando mais meninas nas
+        áreas de exatas e tecnologia.
+      </p>
+      <div class="hero-actions" style="justify-content: center; margin-top: 20px;">
+        <a href="{{ url_votacao }}" target="_blank" class="btn-primary" style="font-size: 1.2rem; padding: 15px 30px;">
+          🗳️ Clique aqui para Votar no AdaGraph!
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light" id="sobre">
+    <div class="container">
+      <span class="section-tag">Nosso Projeto OBT 2026</span>
+      <h2 class="section-title">O que é o <span>AdaGraph</span>?</h2>
+      <p class="section-intro">
+        AdaGraph é um aplicativo desenvolvido para ajudar meninas no aprendizado,
+        oferecendo um espaço acessível para tirar dúvidas e, ao mesmo tempo,
+        enfrentar a falta de representatividade na área. A proposta é incentivar
+        mais meninas a se desenvolverem, fortalecendo sua confiança e ampliando
+        suas oportunidades acadêmicas e profissionais.
+      </p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🗺️</div>
+          <h3>Grafo de Aprendizado</h3>
+          <p>
+            A mentora desenha o cronograma diretamente no app, adicionando materiais
+            e marcando sessões de vídeo. O sistema bloqueia conteúdos avançados se
+            faltarem pré-requisitos, garantindo base sólida e evitando frustrações.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🆘</div>
+          <h3>SOS Exatas</h3>
+          <p>
+            Uma menina coloca sua dúvida no app e qualquer uma pode ajudar. Quando
+            uma mentora responde, a resposta ganha o selo <em>"Verificado pela Ada"</em>,
+            garantindo segurança e rigor técnico.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3>Smart Matching</h3>
+          <p>
+            Nosso algoritmo vai além dos horários: promove representatividade.
+            Priorizamos conexões que fortalecem a identidade de meninas negras e
+            indígenas, conectando-as com mentoras que compartilham suas vivências.
+          </p>
+        </div>
+      </div>
+      <div class="ods-block">
+        <h3 class="ods-title">Alinhado aos ODS</h3>
+        <p class="ods-desc">
+          O AdaGraph está alinhado aos Objetivos de Desenvolvimento Sustentável,
+          promovendo inclusão, equidade e acesso ao conhecimento.
+        </p>
+        <div class="ods-grid">
+          {% for o in ods %}
+          <div class="ods-badge" style="background:{{ o.color }}">
+            <span class="ods-num">{{ o.num }}</span>
+            <span class="ods-label">{{ o.label }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="pitch">
+    <div class="container text-center">
+      <span class="section-tag light">Pitch OBT</span>
+      <h2 class="section-title light">Assista ao nosso <span>Pitch</span></h2>
+      <p class="section-intro light">
+        Conheça a proposta do AdaGraph no pitch que nos levou ao top 10 nacional
+        e nos rendeu a medalha de prata na OBT 2026:
+      </p>
+      <div class="video-wrapper">
+        <iframe src="{{ youtube_url }}" title="AdaGraph: Garotas ajudando garotas a mapear o futuro!" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+  <section class="section section-light" id="galeria-equipe">
+    <div class="container text-center">
+      <span class="section-tag">Juntas na Jornada</span>
+      <h2 class="section-title"> <span>Nossa Equipe</span></h2>
+
+      <div class="carousel-container" id="carouselContainer">
+        <button class="carousel-btn prev-btn" aria-label="Foto anterior" onclick="moveSlide(-1)">❮</button>
+
+        <div class="carousel-wrapper">
+          <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-slide">
+              <img src="{{ url_for('static', filename='img/equipe1.JPG') }}" alt="Foto da equipe ctrl<div>as 1">
+            </div>
+            <div class="carousel-slide">
+              <img src="{{ url_for('static', filename='img/equipe2.JPG') }}" alt="Foto da equipe ctrl<div>as 2">
+            </div>
+            <div class="carousel-slide">
+              <img src="{{ url_for('static', filename='img/equipe3.JPG') }}" alt="Foto da equipe ctrl<div>as 3">
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-btn next-btn" aria-label="Próxima foto" onclick="moveSlide(1)">❯</button>
+
+        <div class="carousel-indicators">
+          <span class="indicator active" onclick="goToSlide(0)"></span>
+          <span class="indicator" onclick="goToSlide(1)"></span>
+          <span class="indicator" onclick="goToSlide(2)"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section section-light" id="equipe">
+    <div class="container">
+      <span class="section-tag">ctrl&lt;div&gt;as</span>
+      <h2 class="section-title">Quem <span>nós somos?</span></h2>
+      <p class="section-intro">
+        Somos 6 meninas de estados diferentes do Brasil, estudantes de ensino médio
+        apaixonadas por tecnologia.
+      </p>
+
+      <div class="team-grid">
+        {% for member in team %}
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" role="button" tabindex="0"
+          onkeypress="if(event.key==='Enter') this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <img src="{{ url_for('static', filename=member.photo.replace('static/', '')) }}"
+                alt="Foto de {{ member.name }}" class="team-photo"
+                onerror="this.src='{{ url_for('static', filename='img/placeholder.png') }}'" />
+              <h3 class="team-name">{{ member.name }}</h3>
+              <p class="team-role">{{ member.role }}</p>
+              <span class="flip-hint">Clique para conhecer ✨</span>
+            </div>
+            <div class="flip-back">
+              <h3 class="team-name-back">{{ member.name }}</h3>
+              <p class="team-bio">{{ member.bio }}</p>
+            </div>
+          </div>
         </div>
         {% endfor %}
       </div>
     </div>
-  </div>
-</section>
-
-<section class="section section-dark" id="pitch">
-  <div class="container text-center">
-    <span class="section-tag light">Pitch OBT</span>
-    <h2 class="section-title light">Assista ao nosso <span>Pitch</span></h2>
-    <p class="section-intro light">
-      Conheça a proposta do AdaGraph no pitch que nos levou ao top 10 nacional
-      e nos rendeu a medalha de prata na OBT 2026:
-    </p>
-    <div class="video-wrapper">
-      <iframe
-        src="{{ youtube_url }}"
-        title="AdaGraph: Garotas ajudando garotas a mapear o futuro!"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe>
-    </div>
-  </div>
-</section>
-<section class="section section-light" id="galeria-equipe">
-  <div class="container text-center">
-    <span class="section-tag">Juntas na Jornada</span>
-    <h2 class="section-title"> <span>Nossa Equipe</span></h2>
-
-    <div class="carousel-container" id="carouselContainer">
-      <button class="carousel-btn prev-btn" aria-label="Foto anterior" onclick="moveSlide(-1)">❮</button>
-
-      <div class="carousel-wrapper">
-        <div class="carousel-track" id="carouselTrack">
-          <div class="carousel-slide">
-            <img src="{{ url_for('static', filename='img/equipe1.JPG') }}" alt="Foto da equipe ctrl<div>as 1">
-          </div>
-          <div class="carousel-slide">
-            <img src="{{ url_for('static', filename='img/equipe2.JPG') }}" alt="Foto da equipe ctrl<div>as 2">
-          </div>
-          <div class="carousel-slide">
-            <img src="{{ url_for('static', filename='img/equipe3.JPG') }}" alt="Foto da equipe ctrl<div>as 3">
-          </div>
+  </section>
+  <section class="section section-pink" id="solucao">
+    <div class="container solucao-layout">
+      <div class="solucao-text">
+        <span class="section-tag light">Nossa Solução</span>
+        <h2 class="section-title light">Veja o <span>AdaGraph</span> em ação</h2>
+        <p class="section-intro light">
+          Construímos um protótipo funcional com todas as funcionalidades pensadas
+          para que nenhuma menina desista das exatas. Explore o design no Figma ou
+          fique por dentro das novidades pelo nosso Instagram.
+        </p>
+        <div class="solucao-btns">
+          <a href="{{ figma_url }}" target="_blank" class="btn-primary">
+            Ver Protótipo no Figma
+          </a>
+          <a href="{{ instagram_url }}" target="_blank" class="btn-outline-light">
+            📸 Fique por Dentro — @ctrldivas
+          </a>
         </div>
       </div>
 
-      <button class="carousel-btn next-btn" aria-label="Próxima foto" onclick="moveSlide(1)">❯</button>
-
-      <div class="carousel-indicators">
-        <span class="indicator active" onclick="goToSlide(0)"></span>
-        <span class="indicator" onclick="goToSlide(1)"></span>
-        <span class="indicator" onclick="goToSlide(2)"></span>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="section section-light" id="equipe">
-  <div class="container">
-    <span class="section-tag">ctrl&lt;div&gt;as</span>
-    <h2 class="section-title">Quem <span>nós somos?</span></h2>
-    <p class="section-intro">
-      Somos 6 meninas de estados diferentes do Brasil, estudantes de ensino médio
-      apaixonadas por tecnologia.
-    </p>
-
-    <div class="team-grid">
-      {% for member in team %}
-      <div class="flip-card" onclick="this.classList.toggle('flipped')" role="button" tabindex="0"
-           onkeypress="if(event.key==='Enter') this.classList.toggle('flipped')">
-        <div class="flip-inner">
-          <div class="flip-front">
-            <img
-              src="{{ url_for('static', filename=member.photo.replace('static/', '')) }}"
-              alt="Foto de {{ member.name }}"
-              class="team-photo"
-              onerror="this.src='{{ url_for('static', filename='img/placeholder.png') }}'"
-            />
-            <h3 class="team-name">{{ member.name }}</h3>
-            <p class="team-role">{{ member.role }}</p>
-            <span class="flip-hint">Clique para conhecer ✨</span>
-          </div>
-          <div class="flip-back">
-            <h3 class="team-name-back">{{ member.name }}</h3>
-            <p class="team-bio">{{ member.bio }}</p>
+      <div class="solucao-mockup">
+        <div class="phone-frame">
+          <img src="{{ url_for('static', filename='img/app_mockup.png') }}" alt="Mockup do AdaGraph"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+          <div class="mockup-placeholder" style="display:none">
+            <span>AdaGraph</span>
+            <p>Protótipo disponível no Figma</p>
           </div>
         </div>
       </div>
-      {% endfor %}
     </div>
-  </div>
-</section>
-<section class="section section-pink" id="solucao">
-  <div class="container solucao-layout">
-    <div class="solucao-text">
-      <span class="section-tag light">Nossa Solução</span>
-      <h2 class="section-title light">Veja o <span>AdaGraph</span> em ação</h2>
-      <p class="section-intro light">
-        Construímos um protótipo funcional com todas as funcionalidades pensadas
-        para que nenhuma menina desista das exatas. Explore o design no Figma ou
-        fique por dentro das novidades pelo nosso Instagram.
-      </p>
-      <div class="solucao-btns">
-        <a href="{{ figma_url }}" target="_blank" class="btn-primary">
-          Ver Protótipo no Figma
-        </a>
-        <a href="{{ instagram_url }}" target="_blank" class="btn-outline-light">
-          📸 Fique por Dentro — @ctrldivas
-        </a>
-      </div>
-    </div>
+  </section>
 
-    <div class="solucao-mockup">
-      <div class="phone-frame">
-        <img
-          src="{{ url_for('static', filename='img/app_mockup.png') }}"
-          alt="Mockup do AdaGraph"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
-        />
-        <div class="mockup-placeholder" style="display:none">
-          <span>AdaGraph</span>
-          <p>Protótipo disponível no Figma</p>
+  <section class="section section-light" id="parceiros">
+    <div class="container text-center">
+      <span class="section-tag">Rede de Apoio</span>
+      <h2 class="section-title">Nossos <span>Parceiros</span></h2>
+      <div class="partners-grid">
+        {% for p in partners %}
+        <div class="partner-card">
+          <img src="{{ url_for('static', filename=p.logo.replace('static/', '')) }}" alt="{{ p.name }}"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
+          <span class="partner-name-fallback" style="display:none">{{ p.name }}</span>
+          <p class="partner-name">{{ p.name }}</p>
         </div>
+        {% endfor %}
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section section-light" id="parceiros">
-  <div class="container text-center">
-    <span class="section-tag">Rede de Apoio</span>
-    <h2 class="section-title">Nossos <span>Parceiros</span></h2>
-    <div class="partners-grid">
-      {% for p in partners %}
-      <div class="partner-card">
-        <img
-          src="{{ url_for('static', filename=p.logo.replace('static/', '')) }}"
-          alt="{{ p.name }}"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"
-        />
-        <span class="partner-name-fallback" style="display:none">{{ p.name }}</span>
-        <p class="partner-name">{{ p.name }}</p>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <p class="footer-logo">Ada<span>Graph</span></p>
+        <p class="footer-sub">"Garotas mapeando o futuro!"</p>
+        <p class="footer-quote">
+          Ada Lovelace escreveu o primeiro algoritmo da história.<br />
+          Estamos criando o algoritmo que vai garantir que a <strong>próxima Ada</strong>
+          não desista no caminho!
+        </p>
       </div>
-      {% endfor %}
+      <div class="footer-links">
+        <p><strong>Equipe ctrl&lt;div&gt;as</strong></p>
+        <a href="https://instagram.com/ctrldivas" target="_blank">📸 @ctrldivas</a>
+        <a href="mailto:ctrldivas.behringacademy@gmail.com">✉️ ctrldivas.behringacademy@gmail.com</a>
+      </div>
+      <div class="footer-nav">
+        <a href="#sobre">Sobre</a>
+        <a href="#pitch">Pitch</a>
+        <a href="#equipe">Equipe</a>
+        <a href="#solucao">Solução</a>
+        <a href="#parceiros">Parceiros</a>
+        <a href="/apoiadores">Apoiadores</a>
+      </div>
     </div>
-  </div>
-</section>
+    <p class="footer-copy">© 2026 AdaGraph • ctrl&lt;div&gt;as • OBT 2026 - Medalha de Prata 🥈</p>
+  </footer>
 
-<footer class="footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      <p class="footer-logo">Ada<span>Graph</span></p>
-      <p class="footer-sub">"Garotas mapeando o futuro!"</p>
-      <p class="footer-quote">
-        Ada Lovelace escreveu o primeiro algoritmo da história.<br/>
-        Estamos criando o algoritmo que vai garantir que a <strong>próxima Ada</strong>
-        não desista no caminho!
-      </p>
-    </div>
-    <div class="footer-links">
-      <p><strong>Equipe ctrl&lt;div&gt;as</strong></p>
-      <a href="https://instagram.com/ctrldivas" target="_blank">📸 @ctrldivas</a>
-      <a href="mailto:ctrldivas.behringacademy@gmail.com">✉️ ctrldivas.behringacademy@gmail.com</a>
-    </div>
-    <div class="footer-nav">
-      <a href="#sobre">Sobre</a>
-      <a href="#pitch">Pitch</a>
-      <a href="#equipe">Equipe</a>
-      <a href="#solucao">Solução</a>
-      <a href="#parceiros">Parceiros</a>
-      <a href="/apoiadores">Apoiadores</a>
-    </div>
-  </div>
-  <p class="footer-copy">© 2026 AdaGraph • ctrl&lt;div&gt;as • OBT 2026 - Medalha de Prata 🥈</p>
-</footer>
-
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
+
 </html>
